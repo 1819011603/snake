@@ -134,10 +134,18 @@ public class snakeWin extends JPanel implements ActionListener,KeyListener,Runna
 // 画图 动态的运行的本质重复地清除旧的图片 并重新写入新的图片
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.drawRect(10, 40, 400, 300);
         g.drawString("分数："+fenShu, 270, 15);
         g.drawString("速度："+Speed, 270, 35);
         g.drawString("长度："+eat1, 350, 15);
+        g.setColor(new Color(212,250,242));
+        g.fillRect(10,40,400,300);
+        g.setColor(new Color(216,213,82));
+        for (int i = 10; i <= 410; i+=10){
+            g.drawLine(i,40,i,340);
+        }
+        for (int i = 40; i <= 340; i+=10){
+            g.drawLine(10,i,410,i);
+        }
         // set the color of the food
         g.setColor(new Color(0, 255, 0));
         if(start){
@@ -190,14 +198,14 @@ public class snakeWin extends JPanel implements ActionListener,KeyListener,Runna
         }
     }
 
-// 移动的时候先把末尾的那一节点删去 然后在头部插入一个蛇头
+    // 移动的时候先把末尾的那一节点删去 然后在头部插入一个蛇头
     public void otherMove(int x, int y){
         list.remove(list.size()-1);
         snakeAct tempAct = new snakeAct();
         tempAct.setX(list.get(0).getX()+x);
         tempAct.setY(list.get(0).getY()+y);
         list.add(0,tempAct);
- }
+    }
 
     public void move(int x,int y){
         // 判断蛇下一步会不会死亡
